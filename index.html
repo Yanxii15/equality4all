@@ -916,8 +916,8 @@ contactSection.className = "contact-section";
 contactSection.innerHTML = `
   <div class="contact-header">
     <p class="contact-label">Reach out</p>
-    <h2 class="contact-title">Contact Us</h2>
-    <p class="contact-sub">Questions, challenges, corrections, or anything else — we want to hear it.</p>
+    <h2 class="contact-title">Contact Me</h2>
+    <p class="contact-sub">Questions, challenges, corrections, or anything else — I would like to hear it.</p>
   </div>
   <div class="contact-body">
     <form id="contactForm" name="questions" method="POST" data-netlify="true" netlify-honeypot="bot-field">
@@ -953,7 +953,7 @@ contactSection.innerHTML = `
 const footer = document.createElement("footer");
 footer.className = "site-footer";
 footer.innerHTML = `
-  <p class="footer-label">Key books to read</p>
+  <p class="footer-label">Relevant Book/Studies for reading</p>
   <p class="footer-books">
     Blum, Lawrence — <em>I'm Not a Racist, But...</em> (Cornell UP, 2002) &middot;
     Appiah, Kwame Anthony — <em>Racisms</em> in <em>Anatomy of Racism</em> (OUP, 1990) &middot;
@@ -989,7 +989,7 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
     });
     if (!res.ok) throw new Error(res.status);
     status.className = "contact-status success";
-    status.textContent = "Message sent — thank you. We'll be in touch.";
+    status.textContent = "Message sent — thank you. I will be in touch.";
     form.reset();
   } catch {
     status.className = "contact-status error";
