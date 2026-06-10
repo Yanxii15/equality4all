@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Race, Racism & Who Can Experience It — Full Argument Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0f;
+      --bg-card: #111114;
+      --bg-point: #0f0f12;
+      --bg-expanded: #15151a;
+      --border: #222226;
+      --border-hover: #333338;
+      --text-primary: #e8e8e8;
+      --text-secondary: #aaa;
+      --text-muted: #666;
+      --text-source: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: linear-gradient(135deg, #1a0a2e 0%, #0d1a2e 50%, #0a1a0d 100%);
+      padding: 2.5rem 2rem 2rem;
+      border-bottom: 1px solid #2a2a2e;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner { max-width: 900px; margin: 0 auto; }
+    .header-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .header-sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* NAV PILLS */
+    .nav-bar {
+      background: #0d0d0f;
+      border-bottom: 1px solid #1a1a1e;
+      padding: 0.75rem 1.5rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+    .nav-bar::-webkit-scrollbar { display: none; }
+    .nav-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 0.5rem; }
+    .nav-pill {
+      display: inline-block;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid #2a2a2e;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+      background: transparent;
+    }
+    .nav-pill:hover { border-color: #555; color: #ccc; }
+
+    /* MAIN */
+    main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+    /* SECTION CARD */
+    .section-card {
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .section-card.open { border-color: var(--section-accent, #555) !important; }
+
+    /* SECTION HEADER BUTTON */
+    .section-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.5rem;
+      background: linear-gradient(135deg, #1a1a1e, #161618);
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      gap: 1rem;
+      transition: background 0.2s ease;
+    }
+    .section-card.open .section-btn {
+      background: linear-gradient(135deg, var(--section-color, #1a1a2e), var(--section-color2, #111));
+    }
+    .section-btn-left { display: flex; align-items: center; gap: 0.85rem; }
+    .section-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--section-accent, #555);
+      flex-shrink: 0;
+      transition: box-shadow 0.2s;
+    }
+    .section-card.open .section-dot {
+      box-shadow: 0 0 10px var(--section-accent, #555);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #ccc;
+      transition: color 0.2s;
+    }
+    .section-card.open .section-title { color: #fff; }
+    .section-btn-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .section-count {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--section-accent, #555);
+      letter-spacing: 0.05em;
+    }
+    .section-chevron {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+    .section-card.open .section-chevron { transform: rotate(180deg); }
+
+    /* POINTS LIST */
+    .points-list { background: var(--bg-point); display: none; }
+    .section-card.open .points-list { display: block; }
+
+    /* POINT */
+    .point-item { border-top: 1px solid #1a1a1e; }
+    .point-btn {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      gap: 1rem;
+      transition: background 0.15s;
+    }
+    .point-btn:hover { background: #13131a; }
+    .point-item.expanded .point-btn { background: var(--bg-expanded); }
+    .point-left { display: flex; gap: 0.75rem; align-items: flex-start; }
+    .point-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--section-accent, #555);
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+    .point-heading {
+      font-size: 0.93rem;
+      color: #ddd;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+    .point-toggle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+      font-family: monospace;
+    }
+
+    /* POINT BODY */
+    .point-body { display: none; padding: 0 1.5rem 1.25rem 3.35rem; }
+    .point-item.expanded .point-body { display: block; }
+    .point-text {
+      font-size: 0.9rem;
+      color: #bbb;
+      line-height: 1.8;
+      margin-bottom: 0.85rem;
+      font-style: italic;
+    }
+    .point-source {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--section-accent, #555);
+      opacity: 0.8;
+      border-left: 2px solid var(--section-accent, #333);
+      padding-left: 0.75rem;
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #1e1e22;
+      text-align: center;
+    }
+    .footer-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .footer-books {
+      font-size: 0.8rem;
+      color: #555;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* CONTACT FORM */
+    .contact-section {
+      margin-top: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .contact-header {
+      background: linear-gradient(135deg, #0d1a3a 0%, #1a0a2e 100%);
+      padding: 1.4rem 1.5rem;
+      border-bottom: 1px solid #1a1a2e;
+    }
+    .contact-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #5b8cff;
+      margin-bottom: 0.35rem;
+    }
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #e8e8e8;
+    }
+    .contact-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'IBM Plex Mono', monospace;
+      margin-top: 0.3rem;
+    }
+    .contact-body {
+      background: var(--bg-card);
+      padding: 1.5rem;
+    }
+    .contact-field {
+      margin-bottom: 1.1rem;
+    }
+    .contact-field label {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .contact-field label .req { color: #5b8cff; margin-left: 0.2rem; }
+    .contact-field label .opt { color: #3a3a4a; margin-left: 0.2rem; }
+    .contact-field input,
+    .contact-field textarea {
+      width: 100%;
+      background: #090909;
+      border: 1px solid #1e1e22;
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 0.88rem;
+      padding: 0.65rem 0.85rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .contact-field input:focus,
+    .contact-field textarea:focus { border-color: #5b8cff; }
+    .contact-field input::placeholder,
+    .contact-field textarea::placeholder { color: #2e2e38; }
+    .contact-field textarea { resize: vertical; min-height: 110px; }
+    .contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .contact-submit {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #111a2e;
+      border: 1px solid #2a3a6a;
+      color: #5b8cff;
+      padding: 0.65rem 1.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .contact-submit:hover:not(:disabled) {
+      background: #162040;
+      border-color: #5b8cff;
+    }
+    .contact-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+    .contact-status {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 0.6rem 0.9rem;
+      border-radius: 6px;
+      display: none;
+    }
+    .contact-status.success {
+      background: #091409;
+      border: 1px solid #1e4a1e;
+      color: #4aff9e;
+      display: block;
+    }
+    .contact-status.error {
+      background: #160909;
+      border: 1px solid #4a1e1e;
+      color: #ff6b6b;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 1.5rem 1rem 1rem; }
+      .section-btn { padding: 0.9rem 1rem; }
+      .point-btn { padding: 0.85rem 1rem; }
+      .point-body { padding: 0 1rem 1rem 2.5rem; }
+      .contact-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <p class="header-label">Complete Argument Framework</p>
+    <h1 class="header-title">Race, Racism &amp; Who Can Experience It</h1>
+    <p class="header-sub">12 sections · Click any section to expand · Click any point for full argument + source · All sources cited</p>
+  </div>
+</header>
+
+<!-- NETLIFY FORM — static copy required for Netlify to detect it at build time -->
+<!-- The visible form is JS-rendered below; this hidden one registers it with Netlify -->
+<form name="questions" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="questions" />
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="text" name="tiktok-username" />
+  <textarea name="message"></textarea>
+  <input name="bot-field" />
+</form>
+
+<nav class="nav-bar" aria-label="Jump to section">
+  <div class="nav-inner" id="navInner"></div>
+</nav>
+
+<main id="main"></main>
+
+<script>
+const sections = [
+  {
+    id: "race-definition",
+    title: "1. Defining Race",
+    color: "#1a3a5c",
+    accent: "#4a9eff",
+    points: [
+      {
+        heading: "Two definitions of race exist",
+        body: "Race has a biological definition (subspecies within taxonomy) and a social definition. Biologically, human races do not exist — confirmed by the National Academies of Sciences (2023) and multiple independent studies. The operative definition is therefore social.",
+        source: "National Academies of Sciences — 'Using Population Descriptors in Genetics and Genomics Research' (2023)"
+      },
+      {
+        heading: "Social definition — race is a construct",
+        body: "Race is a human categorisation of people based on shared physical or cultural attributes, subjective to society, place, and time. What counts as a race in America does not in Myanmar or 1930s Germany.",
+        source: "Barnshaw, John — Encyclopedia of Race, Ethnicity and Society (Sage Publications, 2008) · Britannica · Merriam-Webster"
+      },
+      {
+        heading: "Race varies by time and place — examples",
+        body: "Jews were classified as a distinct inferior race by Nazi Germany (Reich Citizenship Law, 1935) but are considered white in modern America. The Irish were racialised as subhuman by the British in the 19th century but are not today. Myanmar officially recognises 135 national races and deliberately excludes the Rohingya from all of them.",
+        source: "germanhistorydocs.org — Reich Citizenship Law (1935) · National Geographic — The Rohingya People"
+      },
+      {
+        heading: "Race is defined by physical AND cultural characteristics",
+        body: "A purely phenotypic definition fails. Racial passing (Walter White, NAACP — blond, blue-eyed but Black) shows physical appearance overrides cultural identity when cultural information is unavailable. The Rachel Dolezal case shows cultural performance alone is insufficient without physical racialisation. Both axes operate simultaneously.",
+        source: "Walter White biography — NAACP historical records · University of Miami Law Review on Dolezal"
+      },
+      {
+        heading: "Phenotype does not define race — it is too broad",
+        body: "Phenotype includes blood type, disease susceptibility, height, and metabolic processes — not just visible skin colour. Nobody makes racial categories based on blood type, despite it being a genuine phenotype. The selection of which phenotypes 'count' is socially driven, not biologically determined. This proves categories are social, not phenotypic.",
+        source: "Oxford Academic — Human Molecular Genetics 18(R1) (2009) · NIH PMC10519151"
+      }
+    ]
+  },
+  {
+    id: "racism-definition",
+    title: "2. Defining Racism",
+    color: "#1a3a2c",
+    accent: "#4aff9e",
+    points: [
+      {
+        heading: "The formal definitions have no power requirement",
+        body: "UN ICERD Article 1 defines racial discrimination as treatment based on 'race, colour, descent, or national or ethnic origin' — no power requirement, no specification of who the perpetrator must be. Merriam-Webster, the APA, and the Social Encyclopedia (Dennis R.M., 2004) all similarly contain no power requirement.",
+        source: "UN ICERD Article 1 (1965, in force 1969) · APA definition · Dennis R.M. — The Social Encyclopedia Vol. 2 (2004)"
+      },
+      {
+        heading: "The UN definition has legal weight over Black oppression",
+        body: "In March 2026, the UN passed a landmark resolution describing the trafficking and enslavement of Africans as 'the gravest crime against humanity' — using the exact same ICERD framework. If they accept this framework for slavery, they accept it universally. They cannot selectively use the UN definition and then dismiss it when it applies to other groups.",
+        source: "UN Resolution — March 2026 · UN Secretary-General statement on transatlantic slave trade"
+      },
+      {
+        heading: "Three levels of racism — all recognised by the same scholars",
+        body: "Dr. Camara Jones (Harvard) identifies internalised racism (private beliefs, no power needed), interpersonal racism (individual acts between people, no power needed), and institutional racism (system-level). Your opponents only recognise the third. A definition of racism must account for all recognised subtypes — failing even one means it is not a complete definition.",
+        source: "Jones, Camara — 'Levels of Racism: A Theoretic Framework' (American Journal of Public Health, 2000)"
+      },
+      {
+        heading: "Your working definition",
+        body: "'Racism is the belief in the inferiority or difference of a group based on their race, ethnicity, nationality or descent — or the treatment, discrimination or oppression of a person or group on those same grounds.' This covers both attitude and behaviour, has no power requirement, aligns with the UN, Blum, and the APA, and applies globally.",
+        source: "Synthesised from: UN ICERD · Blum, Lawrence — I'm Not a Racist, But... (Cornell UP, 2002) · APA"
+      },
+      {
+        heading: "Racial discrimination vs racism — and why the distinction helps you",
+        body: "Even scholars who separate racism from racial discrimination admit that racial discrimination (the behaviour) can be committed by anyone regardless of race. Under UN ICERD, racial discrimination applies to any person of any racial background. So even the narrower concept defeats the 'only white people can be racist' position.",
+        source: "UN ICERD Article 1 · Anti-Discrimination Commission · Journal of Ethnic and Migration Studies"
+      }
+    ]
+  },
+  {
+    id: "power-argument",
+    title: "3. Dismantling 'Racism = Power + Prejudice'",
+    color: "#3a1a1a",
+    accent: "#ff6b6b",
+    points: [
+      {
+        heading: "Who actually said it and when — they won't know",
+        body: "'Racism = prejudice + power' was proposed by Patricia Bidol-Padva in a 1970 education book. It is not law. It is not the UN definition. It is not Merriam-Webster. It is one academic redefinition from one specific context. Ask your opponents to name who proposed it and when — they almost certainly cannot. You can.",
+        source: "Wikipedia — 'Prejudice plus power' · Bidol-Padva, Patricia — New Perspectives on Race (1970)"
+      },
+      {
+        heading: "Carmichael's actual position — they've misread him",
+        body: "Stokely Carmichael coined 'institutional racism' in Black Power (1967) — describing how organisations perpetuate racial harm. He explicitly defined individual racism as 'individual whites acting against individual Blacks' in the same book. He was adding a category, not replacing all others. Your opponents have taken a subcategory and presented it as the whole definition.",
+        source: "Carmichael & Hamilton — Black Power: The Politics of Liberation (1967)"
+      },
+      {
+        heading: "It fails its own subtypes — the internal contradiction",
+        body: "Internalised racism (private beliefs) requires zero power. Interpersonal racism (one person treating another worse due to race) requires zero power. Both are formally recognised subtypes by the same scholars who advocate the structural definition. A definition that cannot account for recognised subtypes is not a definition of the whole — it is a definition of one part.",
+        source: "Jones, Camara — American Journal of Public Health (2000) · Blum — Cornell UP (2002)"
+      },
+      {
+        heading: "The power model is geographically broken",
+        body: "In Rwanda 1994, the Hutu held state power and committed genocide against the Tutsi on racial grounds. In Myanmar, the Buddhist majority uses state institutions to exclude the Rohingya. In post-apartheid South Africa, the racial power dynamic flipped. Power is not permanently assigned to one race globally — it shifts by country and era.",
+        source: "UN Refugee Agency · Yale Law School — Persecution of the Rohingya (2015)"
+      },
+      {
+        heading: "The logical trap — two questions that end the argument",
+        body: "Q1: 'Are individual white people who hold no institutional power incapable of being racist?' If yes — a poor white person in rural America cannot be racist. If no — individual racism exists outside the system. Q2: 'Was the Rwandan genocide racist?' If yes — Black people committed racism. If no — you just said 800,000 racial murders wasn't racism. Either answer defeats their position.",
+        source: "Logical deduction from the framework's own premises"
+      }
+    ]
+  },
+  {
+    id: "white-racism",
+    title: "4. White People CAN Experience Racism",
+    color: "#1a1a3a",
+    accent: "#a78bfa",
+    points: [
+      {
+        heading: "The Irish — 600 years of documented racialisation",
+        body: "Victorian anthropologists ranked the Irish below Anglo-Saxons in racial hierarchy using pseudo-scientific texts. Political cartoons in Punch magazine depicted them as ape-like. They were denied land rights, subjected to famine policy, and ruled as unfit to self-govern due to their 'national character' — a racial claim. British colonial law was built on this racial classification. This satisfies even the strictest structural definition of racism.",
+        source: "Loughborough University research · Punch magazine archives (19th century) · Irish Network Against Racism"
+      },
+      {
+        heading: "The Roma — systemic racism in Europe right now",
+        body: "The US State Department documents systematic governmental discrimination, ethnic profiling, police abuse, school segregation, and housing exclusion against Roma across Europe. Germany's Anti-Roma Centre recorded 1,678 incidents in 2024 — nearly triple 2022. The European Parliament describes it as systemic. Perpetrators are majority-white European governments and populations. Victims are a white ethnic minority.",
+        source: "US State Department Human Rights Reports · European Parliament · Germany Anti-Roma Centre (2024)"
+      },
+      {
+        heading: "The consistency test",
+        body: "The British built a racial system — pseudo-science, colonial law, institutional power — classifying the Irish as a distinct inferior race. Ask: 'Was that racism?' If yes — white people experienced systemic racism. If no — they are denying what academic historians document. They cannot use social constructionism to exclude the Irish and then switch to biological definitions for the Tutsi.",
+        source: "Loughborough University · Journal of British Studies"
+      }
+    ]
+  },
+  {
+    id: "black-racist",
+    title: "5. Black People CAN Be Racist",
+    color: "#1a2a1a",
+    accent: "#34d399",
+    points: [
+      {
+        heading: "Rwanda 1994 — 800,000 killed, no white perpetrators",
+        body: "The Hutu held state power and used institutional structures to commit genocide against the Tutsi on racial grounds. ~800,000 killed in 100 days. Both groups are Black African. Under 'only white people can be racist' this would not qualify as racism — an absurd conclusion. It meets the UN definition of racial discrimination entirely. If they deny this, they've said 800,000 racial murders wasn't racism.",
+        source: "UN genocide documentation, Rwanda · Britannica — Rwandan genocide"
+      },
+      {
+        heading: "The Rohingya — state racial exclusion, no white perpetrators",
+        body: "Myanmar's Buddhist-majority government has denied the Rohingya citizenship since 1982, excluded them from all 135 official national races, and conducted what Yale Law School (2015) assessed meets the legal definition of genocide. No white perpetrators. The UN calls them the world's most persecuted minority. This is textbook institutional racism committed by non-white perpetrators.",
+        source: "Yale Law School — Persecution of the Rohingya (2015) · UN Refugee Agency"
+      },
+      {
+        heading: "Pre-colonial Japan — Burakumin (the strongest independent case)",
+        body: "The Burakumin were legally codified as an inferior group under Japan's Ritsuryō codes from approximately 645 CE — 800 years before Zurara, centuries before European contact. Medieval Japanese texts describe them as being of a different shu (race). They are physically indistinguishable from majority Japanese — meaning this is racial discrimination based entirely on socially constructed descent with no phenotypic basis. Perpetrators: Japanese. Victims: Japanese. No Europeans involved.",
+        source: "Amos, Timothy — Embodying Difference (University of Hawaii Press, 2011) · Neary, Ian — Manchester UP (1989)"
+      },
+      {
+        heading: "Scholarly support — Blum and Appiah directly say it",
+        body: "Lawrence Blum (Cornell UP, 2002) defines racism as antipathy or inferiorization toward any racial group — no power requirement — and dedicates a chapter to whether Black people can be racist. Kwame Anthony Appiah (Black Ghanaian-American philosopher, NYU) explicitly discusses 'demeaning views about white people' as a case of racism and labels Black Nationalism as intrinsic racism.",
+        source: "Blum — I'm Not a Racist, But... (Cornell UP, 2002) · Appiah — 'Racisms' in Anatomy of Racism (OUP, 1990)"
+      }
+    ]
+  },
+  {
+    id: "zurara",
+    title: "6. Zurara Did NOT Invent Racism",
+    color: "#2a1a0a",
+    accent: "#fbbf24",
+    points: [
+      {
+        heading: "Who Zurara actually was — not who they think",
+        body: "Gomes Eanes de Zurara (1410–1474) was Chief Chronicler of Portugal — a royal writer employed by the crown. He was not a king, not a lawyer, not a politician. He wrote a commissioned biography of Prince Henry the Navigator describing the 1444 slave auction. He was a PR writer doing a job for his employer. He made no laws and held no political power.",
+        source: "Wikipedia — Gomes Eanes de Zurara · Noema Magazine critique of Kendi"
+      },
+      {
+        heading: "Even Kendi's own argument doesn't say what opponents claim",
+        body: "Kendi writes in Stamped from the Beginning: 'Zurara's inaugural racist ideas were a product of, not a producer of, Prince Henry's racist policies.' Kendi explicitly says the racism was already being practised before Zurara wrote it down. Even on Kendi's own terms, Zurara documented a practice already happening — he did not originate it.",
+        source: "Kendi, Ibram X. — Stamped from the Beginning (2016) — direct quote from the text"
+      },
+      {
+        heading: "Zurara didn't even use the word 'race'",
+        body: "The word 'race' was first used by French poet Jacques de Brézé in 1481 — 28 years after Zurara's chronicle. It was first formally defined as 'descent' by Jean Nicot in a French dictionary in 1606. Zurara could not have invented racial ideology using a word that didn't yet exist.",
+        source: "Wikipedia — Historical Race Concepts · Etymology of 'race'"
+      },
+      {
+        heading: "Anti-Black prejudice in writing predates Zurara by centuries",
+        body: "Aristotle's Meteorologica (330 BCE) explicitly associates dark-skinned Africans with laziness and natural submissiveness. Islamic writers from the 7th century CE linked Black skin to the Curse of Ham and divine servitude. Christian texts from the 11th century CE associate dark skin with divine punishment — 400 years before Zurara.",
+        source: "Isaac, Benjamin — The Invention of Racism in Classical Antiquity (Princeton UP, 2004)"
+      },
+      {
+        heading: "Independent racial hierarchies prove it is emergent, not created",
+        body: "Japan's Burakumin system (645 CE), China's Han/barbarian hierarchy (3rd century BCE), Indian caste systems — all developed entirely independently of European colonialism. An invention has one inventor. An emergent phenomenon recurs wherever conditions exist. Race-like discrimination appearing independently across all major civilisations proves it is emergent from human cognition, not invented by one Portuguese writer.",
+        source: "Dikötter, Frank — The Discourse of Race in Modern China (Oxford UP, 1992/2015)"
+      }
+    ]
+  },
+  {
+    id: "emergent",
+    title: "7. Race is Emergent, Not Created",
+    color: "#1a0a2a",
+    accent: "#c084fc",
+    points: [
+      {
+        heading: "How to tell emergent from created — six tests",
+        body: "Created things: specific author, specific date, rules designed before use, disappear if creator removed. Emergent things: no single author, no specific date of origin, rules develop through use, appear independently in multiple separate places. The key test: if the same conditions produce the same phenomenon independently across different cultures with no contact between them, it is emergent.",
+        source: "Anderson, Philip — 'More is Different' (Science, 1972) · Aristotle — Physics (four causes)"
+      },
+      {
+        heading: "Created systems exist within emergent phenomena",
+        body: "Human language capacity is emergent — no author, no date. Shakespeare's plays are created within it. The human tendency to racialise is emergent. The American racial system (specific laws, one-drop rule, census categories) is created within it. Belgian racial classification in Rwanda is created within it. Zurara created a document. He did not create the emergent tendency it exploited.",
+        source: "Dennett, Daniel — Darwin's Dangerous Idea (Simon & Schuster, 1995) · Durkheim — Rules of Sociological Method (1895)"
+      },
+      {
+        heading: "Zurara formalised — the same way Johnson codified English",
+        body: "Samuel Johnson formalised English spelling in 1755. He did not create English. Zurara formalised one colonial racial hierarchy in writing in 1453. He did not create racism. What Zurara did is precisely analogous to what Johnson did for English — he consolidated and encoded what already existed. The document is created. The underlying human tendency is emergent.",
+        source: "MDPI Biology (2025) — 'mistaking a moment of conceptual consolidation for a point of origin'"
+      }
+    ]
+  },
+  {
+    id: "tribes",
+    title: "8. Tribes vs. Ethnic Groups",
+    color: "#0a1a2a",
+    accent: "#38bdf8",
+    points: [
+      {
+        heading: "'Tribe' is a colonial imposition, not a neutral term",
+        body: "Pre-colonial European writers called African groups 'nations' and 'states' (Mungo Park, 1790s). By the colonial era, the same groups were called 'tribes' (Livingstone, Stanley). The shift was ideological — not scientific. 'Tribe' was applied to portray African societies as primitive to justify conquest. Anthropologists largely abandoned the term in the late 20th century as imprecise and pejorative.",
+        source: "Wikipedia — Tribe (anthropological term) · Britannica"
+      },
+      {
+        heading: "The Yoruba, Igbo, Hausa — not tribes",
+        body: "The Yoruba are 50+ million people with precolonial urban kingdoms and hereditary monarchies. The Igbo formed city-states before colonialism. The Hausa established the Kanem-Bornu Empire in the 14th century — an empire. Empires are not tribes by any coherent definition. Calling these groups 'tribes' while calling European equivalents 'nations' is a double standard with no principled basis.",
+        source: "Britannica — Yoruba people · Igbo historical records · Hausa Fulani Empire documentation"
+      },
+      {
+        heading: "Tribalism and racism can coexist — they are not mutually exclusive",
+        body: "Even granting 'tribalism' as a label, it does not exclude racism. The Hutu/Tutsi conflict involved ethnic group loyalty AND racialised ideology explicitly hardened by Belgian colonisers who issued racial identity cards. The genocide used racial dehumanisation propaganda ('inyenzi' — cockroaches), identical to Nazi techniques. Calling it 'tribalism' doesn't make the racial element disappear — it just refuses to name it.",
+        source: "UN genocide documentation · Belgian colonial history of Rwanda"
+      }
+    ]
+  },
+  {
+    id: "iq",
+    title: "9. Race and IQ — The Science",
+    color: "#0a2a1a",
+    accent: "#6ee7b7",
+    points: [
+      {
+        heading: "The gap is real — but measures environment not biology",
+        body: "A test performance gap exists on average. But IQ measures performance under conditions, not innate capacity. Flynn and Dickens (Psychological Science, 2006) found the gap narrowed by 5–6 points in 30 years. Their direct quote: 'The constancy of the Black-White IQ gap is a myth and cannot be cited as evidence for genetic origin.' Genes do not change in 30 years. Environment does.",
+        source: "Dickens & Flynn — Psychological Science (2006)"
+      },
+      {
+        heading: "The Flynn Effect — definitive proof IQ is environmental",
+        body: "IQ scores across all populations rose ~30 points in the 20th century (James Flynn, University of Otago). If 1900 people were tested today they would average ~70. Genetic change takes thousands of years. A 30-point rise in one century can only be explained by environment — better nutrition, education, reduced toxin exposure. This makes environmental explanations for all IQ gaps far more credible than genetic ones.",
+        source: "Flynn, James — multiple papers (University of Otago) · Nature editorial (2017)"
+      },
+      {
+        heading: "Heritability of IQ collapses in poverty",
+        body: "Turkheimer et al. found IQ heritability is ~70% in upper-middle-class children but only ~10% in lower-class children — more than half of whom were Black American. In poor environments, environment dominates genetics almost entirely. Since Black Americans are disproportionately in poverty due to documented historical wealth extraction, this finding explains the entire gap without any genetic argument.",
+        source: "Turkheimer et al. — Psychological Science (2003) — twin study"
+      },
+      {
+        heading: "Nisbett — all of the gap is environmental",
+        body: "Richard Nisbett (University of Michigan, National Academy of Sciences) states in Intelligence and How to Get It (W.W. Norton, 2009) that all of the IQ gap is environmental. Transracial adoption studies show IQ tracks the adoptive family's environment, not the child's biological race — direct experimental proof. Known environmental factors (lead exposure, poverty, healthcare, schooling) are more than sufficient to explain the gap.",
+        source: "Nisbett, Richard — Intelligence and How to Get It (W.W. Norton, 2009)"
+      }
+    ]
+  },
+  {
+    id: "agency",
+    title: "10. Babies Cannot Be Racist — Agency",
+    color: "#2a0a0a",
+    accent: "#fb7185",
+    points: [
+      {
+        heading: "Moral agency defined — and why babies lack it",
+        body: "Moral agency is the capacity to act with reference to right and wrong — requiring consciousness, intention, and moral understanding. Developmental psychologists and philosophers agree babies lack full moral agency. Moral responsibility requires the possibility of having done otherwise. Babies have no such possibility. You cannot be morally responsible for something you cannot intend, choose, or understand.",
+        source: "PhilArchive — philosophical analysis of moral agency · Frontiers in Psychology (2023)"
+      },
+      {
+        heading: "Being born into a system is not participating in it",
+        body: "A baby born into wealth is not 'born classist.' A baby born in a powerful country is not 'born imperialist.' The 'born racist' claim assumes that benefiting from a system makes you an active participant — which doesn't follow logically and which nobody applies consistently to any other form of structural advantage.",
+        source: "Logical deduction · Blum — Cornell UP (2002)"
+      },
+      {
+        heading: "The consistency test — apply it globally",
+        body: "If being born into a system makes you responsible for its harms, then Black babies born in majority-Black societies where Black people hold institutional power would be 'born racist' against minorities. Opponents would reject this. If they reject it, they must reject the original premise. The logic cannot be applied selectively to one racial group only.",
+        source: "Logical deduction from framework's own premises"
+      }
+    ]
+  },
+  {
+    id: "culture-language",
+    title: "11. Culture and Language — Cannot Be Stolen",
+    color: "#0a0a2a",
+    accent: "#818cf8",
+    points: [
+      {
+        heading: "Culture is emergent and non-rivalrous",
+        body: "Culture arises from human beings living together over time — Durkheim's social fact, existing outside any individual but requiring the collective. Cultural practices are non-rivalrous: my use does not diminish your use. You cannot steal a non-rivalrous good. The Journal of Ethics (Springer, 2024) and Stanford Encyclopedia of Philosophy both conclude the property ownership framework does not apply to intangible culture.",
+        source: "Springer — Journal of Ethics (2024) · Stanford Encyclopedia of Philosophy — Ethics of Cultural Heritage"
+      },
+      {
+        heading: "What cultural appropriation gets right — and its limits",
+        body: "The defensible core concerns three specific harms: erasure (a group is punished for a practice outsiders are celebrated for), exploitation (commercial profit without credit), and denigration (using cultural symbols to mock). These are real. But 'you are prohibited from learning or using this practice' does not follow from them — and no natural language has ever been successfully gatekept by anyone in human history.",
+        source: "Serano — Outspoken (2007) · Rogers — Communication Theory (2006)"
+      },
+      {
+        heading: "Language cannot be gatekept — Saussure and Chomsky",
+        body: "Saussure established that langue (the language system) exists outside any individual and belongs to no single person or group. Chomsky established Universal Grammar as a biological human capacity — every human can acquire any language. English (from Anglo-Saxon tribes) is spoken by 2 billion non-Anglo-Saxon people. The claim that AAVE belongs exclusively to Black Americans contradicts everything linguistics has established about how languages spread.",
+        source: "Saussure — Course in General Linguistics (1916) · Chomsky — language faculty research"
+      },
+      {
+        heading: "AAVE vs Tutanese — the critical linguistic distinction",
+        body: "AAVE is a genuine dialect with its own emergent grammar — habitual 'be', copula deletion, aspectual 'done' — these are independent grammatical structures, not transformations of Standard English. A code like Tutanese applies a formula to an existing language and has no independent grammar. AAVE is to Tutanese what English is to Pig Latin — one is a natural language, the other is a cipher.",
+        source: "Linguistic consensus on AAVE · Saussure's langue/parole distinction"
+      }
+    ]
+  }
+];
+
+// Build nav pills
+const navInner = document.getElementById("navInner");
+sections.forEach(s => {
+  const a = document.createElement("a");
+  a.href = `#${s.id}`;
+  a.className = "nav-pill";
+  a.textContent = s.title.replace(/^\d+\.\s/, "");
+  navInner.appendChild(a);
+});
+
+// Build main content
+const main = document.getElementById("main");
+
+sections.forEach(section => {
+  const card = document.createElement("div");
+  card.className = "section-card";
+  card.id = section.id;
+  card.style.setProperty("--section-accent", section.accent);
+  card.style.setProperty("--section-color", section.color + "dd");
+  card.style.setProperty("--section-color2", section.color + "88");
+
+  // Section button
+  const btn = document.createElement("button");
+  btn.className = "section-btn";
+  btn.setAttribute("aria-expanded", "false");
+  btn.innerHTML = `
+    <div class="section-btn-left">
+      <div class="section-dot"></div>
+      <span class="section-title">${section.title}</span>
+    </div>
+    <div class="section-btn-right">
+      <span class="section-count">${section.points.length} points</span>
+      <span class="section-chevron">▾</span>
+    </div>
+  `;
+  btn.addEventListener("click", () => {
+    const isOpen = card.classList.toggle("open");
+    btn.setAttribute("aria-expanded", isOpen);
+  });
+  card.appendChild(btn);
+
+  // Points list
+  const list = document.createElement("div");
+  list.className = "points-list";
+
+  section.points.forEach((point, idx) => {
+    const item = document.createElement("div");
+    item.className = "point-item";
+
+    const pBtn = document.createElement("button");
+    pBtn.className = "point-btn";
+    pBtn.setAttribute("aria-expanded", "false");
+    pBtn.innerHTML = `
+      <div class="point-left">
+        <span class="point-num">${String(idx + 1).padStart(2, "0")}</span>
+        <span class="point-heading">${point.heading}</span>
+      </div>
+      <span class="point-toggle">+</span>
+    `;
+    pBtn.addEventListener("click", () => {
+      const isExpanded = item.classList.toggle("expanded");
+      pBtn.setAttribute("aria-expanded", isExpanded);
+      pBtn.querySelector(".point-toggle").textContent = isExpanded ? "−" : "+";
+    });
+
+    const body = document.createElement("div");
+    body.className = "point-body";
+    body.innerHTML = `
+      <p class="point-text">${point.body}</p>
+      <div class="point-source">${point.source}</div>
+    `;
+
+    item.appendChild(pBtn);
+    item.appendChild(body);
+    list.appendChild(item);
+  });
+
+  card.appendChild(list);
+  main.appendChild(card);
+});
+
+// Section 12 — Genetics
+const section12 = {
+  id: "genetics-race",
+  title: "12. Grouping by Skin Colour Has No Genetic Basis",
+  color: "#1a2a0a",
+  accent: "#86efac",
+  points: [
+    {
+      heading: "Plain English first — what does '96% of variation is within groups' actually mean?",
+      body: "Think of human DNA like a library of 1,000 books. Every book has tiny differences — different words, slightly different sentences. Now split those books onto two shelves: 'fiction' and 'non-fiction.' If you counted all the differences across all books, you'd find that 96% of all the differences appear in books on BOTH shelves — the books on each shelf vary enormously from each other. Only 4% of differences are consistently different between the two shelves. That is what the genetic statistic means. The 'shelves' are racial groups. Most of the ways humans differ genetically are differences that exist equally within Black people AND within white people. Two randomly selected Black people will differ from each other almost as much as a randomly selected Black person and white person would. It does NOT mean Black and white people are 96% the same — it means grouping people by race doesn't capture where the real genetic differences are. The groups overlap almost entirely.",
+      source: "Lewontin (1972) · PMC9600569 (2022) · Nature — 'most genetic variation is found within all groups' (2001)"
+    },
+    {
+      heading: "Yes, you can visually group by skin colour — but it maps onto nothing biologically real",
+      body: "Grouping people by dark skin is like grouping all brown animals together — bears, deer, dogs, cats — and claiming they form a meaningful biological category. The visual similarity reflects one single environmental adaptation: melanin levels responding to UV radiation at the latitude where your ancestors lived. It tells you roughly where someone's ancestors were on the map. It does not reflect underlying genetic kinship, immune variation, disease susceptibility, or any other biologically significant trait. The visual grouping is real. The biological category it implies is not.",
+      source: "Yu et al. — Genetics 161(1) (2002) · Lewontin — Evolutionary Biology Vol. 6 (1972)"
+    },
+    {
+      heading: "Yu et al. (2002) — A Yoruba and a Somali can be more genetically different from each other than from a white European",
+      body: "University of Chicago study, published in the journal Genetics (PMC1462113). Sequenced 50 noncoding DNA segments across Africans, Europeans, and Asians. Key finding: genetic diversity among Africans is almost twice as high as among Asians or Europeans, and the diversity within Africans is even higher than the genetic difference between Africans and Eurasians. This means a Yoruba person from Nigeria and a Somali person can be more genetically different from each other than either is from a white person in Norway — yet both would be called 'Black.' The category 'Black' has no genetic coherence when the people within it differ from each other more than they differ from the group outside it.",
+      source: "Yu, Ning et al. — 'Larger Genetic Differences Within Africans Than Between Africans and Eurasians' — Genetics 161(1):269–274 (2002) · doi:10.1093/genetics/161.1.269"
+    },
+    {
+      heading: "Lewontin (1972) — only 6.3% of all human genetic variation falls between racial groups",
+      body: "Richard Lewontin's paper 'The Apportionment of Human Diversity' is one of the most cited findings in all of human genetics. Using 17 genetic markers across populations worldwide: 85.4% of all human genetic variation is within racial groups, 8.3% is between populations within a race, and only 6.3% is between racial groups. Lewontin's own conclusion: 'Since such racial classification is now seen to be of virtually no genetic or taxonomic significance, no justification can be offered for its continuance.' Replicated and confirmed by multiple studies over 50 years.",
+      source: "Lewontin — Evolutionary Biology Vol. 6 (1972) · Confirmed: Jobling et al. — Philosophical Transactions of the Royal Society B (2022) · PMC9014189"
+    },
+    {
+      heading: "Important honest caveat — 'Lewontin's Fallacy'",
+      body: "This is something you should know so opponents don't catch you off guard. Critics (Edwards, 2003) point out that even though most individual genetic variants are shared across groups, when you look at thousands of variants together as a pattern, you can often identify someone's ancestral geographic origin. It's like saying a single word doesn't tell you what language a book is written in — but thousands of words together do. So the honest position is: racial categories as commonly used (Black, white) are not genetically precise — but ancestral geographic origin does leave detectable patterns in DNA. These two things are both true. What you cannot say is that 'Black' as a social category maps cleanly onto a discrete genetic population.",
+      source: "Edwards, A.W.F. — 'Lewontin's Fallacy' — BioEssays 25(8) (2003) · Discover Magazine"
+    },
+    {
+      heading: "The Human Genome Project (2000) — race has no genetic basis",
+      body: "At the White House ceremony marking completion of the first draft of the human genome, Craig Venter (Institute of Genetic Research) and Francis Collins (National Institutes of Health) jointly declared that the concept of race had no genetic basis. This is the largest genomic sequencing project in history, announced by the two leading scientists in the field. Venter stated: 'The concept of race has no genetic or scientific basis.'",
+      source: "American Scientist — 'Race Finished' (2019) · Human Genome Project completion ceremony (2000)"
+    },
+    {
+      heading: "Skin colour genes track UV exposure — not genetic kinship",
+      body: "Skin colour is controlled by very few genes (primarily SLC24A5, SLC45A2, MC1R, OCA2) that track one variable: UV radiation at the latitude where your ancestors lived. Europeans and East Asians both evolved lighter skin independently through DIFFERENT genes entirely — this is called convergent evolution. The same visible outcome (light skin) produced by completely different genetic routes in two separate populations. If skin colour were a reliable marker of deeper genetic similarity, this would be impossible. It isn't — which proves skin colour is a surface adaptation, not a map of genetic ancestry.",
+      source: "Norton et al. — Molecular Biology and Evolution 24(3) (2007) · Lamason et al. — Science 310 (2005) · Martin et al. — Cell 171 (2017)"
+    },
+    {
+      heading: "Bone density differences — real, but not what it sounds like",
+      body: "Studies do show people of sub-Saharan African ancestry tend to have higher bone mineral density than people of European ancestry (4.5–16.1% higher in men, 1.2–7.3% in women, per Journal of Clinical Endocrinology and Metabolism 1997). This is real. But what 'Black' and 'white' mean here is not a social racial category — it is a rough proxy for ancestral geographic origin, specifically different vitamin D metabolism pathways that evolved in high-UV versus low-UV environments. The adaptation that gave Europeans lighter skin (better vitamin D synthesis at low UV latitudes) came at the cost of greater osteoporosis risk. Crucially: there is substantial variation in bone density within African populations too — a Somali and a Nigerian both called 'Black' may have quite different bone density. So the finding reflects ancestral latitude adaptation, not race as a social category.",
+      source: "Journal of Clinical Endocrinology & Metabolism 82(2):429 (1997, Oxford Academic) · Osteoporosis International — Springer Nature (2020)"
+    }
+  ]
+};
+
+// Render section 12
+const s12 = section12;
+const card12 = document.createElement("div");
+card12.className = "section-card";
+card12.id = s12.id;
+card12.style.setProperty("--section-accent", s12.accent);
+card12.style.setProperty("--section-color", s12.color + "dd");
+card12.style.setProperty("--section-color2", s12.color + "88");
+
+const btn12 = document.createElement("button");
+btn12.className = "section-btn";
+btn12.setAttribute("aria-expanded", "false");
+btn12.innerHTML = `
+  <div class="section-btn-left">
+    <div class="section-dot"></div>
+    <span class="section-title">${s12.title}</span>
+  </div>
+  <div class="section-btn-right">
+    <span class="section-count">${s12.points.length} points</span>
+    <span class="section-chevron">▾</span>
+  </div>
+`;
+btn12.addEventListener("click", () => {
+  const isOpen = card12.classList.toggle("open");
+  btn12.setAttribute("aria-expanded", isOpen);
+});
+card12.appendChild(btn12);
+
+const list12 = document.createElement("div");
+list12.className = "points-list";
+s12.points.forEach((point, idx) => {
+  const item = document.createElement("div");
+  item.className = "point-item";
+  const pBtn = document.createElement("button");
+  pBtn.className = "point-btn";
+  pBtn.setAttribute("aria-expanded", "false");
+  pBtn.innerHTML = `
+    <div class="point-left">
+      <span class="point-num">${String(idx + 1).padStart(2, "0")}</span>
+      <span class="point-heading">${point.heading}</span>
+    </div>
+    <span class="point-toggle">+</span>
+  `;
+  pBtn.addEventListener("click", () => {
+    const isExpanded = item.classList.toggle("expanded");
+    pBtn.setAttribute("aria-expanded", isExpanded);
+    pBtn.querySelector(".point-toggle").textContent = isExpanded ? "−" : "+";
+  });
+  const body = document.createElement("div");
+  body.className = "point-body";
+  body.innerHTML = `<p class="point-text">${point.body}</p><div class="point-source">${point.source}</div>`;
+  item.appendChild(pBtn);
+  item.appendChild(body);
+  list12.appendChild(item);
+});
+card12.appendChild(list12);
+main.appendChild(card12);
+
+// Add nav pill for section 12
+const pill12 = document.createElement("a");
+pill12.href = "#genetics-race";
+pill12.className = "nav-pill";
+pill12.textContent = "Genetics of Race";
+navInner.appendChild(pill12);
+
+// Add nav pill for "Contact Us"
+const pillContact = document.createElement("a");
+pillContact.href = "#contact-us";
+pillContact.className = "nav-pill";
+pillContact.textContent = "Contact Us";
+navInner.appendChild(pillContact);
+
+// Build contact form section
+const contactSection = document.createElement("section");
+contactSection.id = "contact-us";
+contactSection.className = "contact-section";
+contactSection.innerHTML = `
+  <div class="contact-header">
+    <p class="contact-label">Reach out</p>
+    <h2 class="contact-title">Contact Us</h2>
+    <p class="contact-sub">Questions, challenges, corrections, or anything else — we want to hear it.</p>
+  </div>
+  <div class="contact-body">
+    <form id="contactForm" name="questions" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="questions" />
+      <p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+      <div class="contact-field">
+        <label for="cf-name">Name <span class="req">*</span></label>
+        <input id="cf-name" type="text" name="name" required placeholder="Your name" autocomplete="name" />
+      </div>
+      <div class="contact-row">
+        <div class="contact-field">
+          <label for="cf-email">Email <span class="opt">(optional)</span></label>
+          <input id="cf-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        <div class="contact-field">
+          <label for="cf-tiktok">TikTok Username <span class="opt">(optional)</span></label>
+          <input id="cf-tiktok" type="text" name="tiktok-username" placeholder="@username" />
+        </div>
+      </div>
+      <div class="contact-field">
+        <label for="cf-message">Question or Statement <span class="req">*</span></label>
+        <textarea id="cf-message" name="message" required placeholder="What's on your mind?"></textarea>
+      </div>
+      <div class="contact-actions">
+        <button type="submit" class="contact-submit" id="contactSubmit">Send Message</button>
+        <div class="contact-status" id="contactStatus" role="status" aria-live="polite"></div>
+      </div>
+    </form>
+  </div>
+`;
+
+// Build footer first so we can append after the contact section
+const footer = document.createElement("footer");
+footer.className = "site-footer";
+footer.innerHTML = `
+  <p class="footer-label">Key books to read</p>
+  <p class="footer-books">
+    Blum, Lawrence — <em>I'm Not a Racist, But...</em> (Cornell UP, 2002) &middot;
+    Appiah, Kwame Anthony — <em>Racisms</em> in <em>Anatomy of Racism</em> (OUP, 1990) &middot;
+    Amos, Timothy — <em>Embodying Difference</em> (U Hawaii Press, 2011) &middot;
+    Dikötter, Frank — <em>The Discourse of Race in Modern China</em> (OUP, 1992) &middot;
+    Nisbett, Richard — <em>Intelligence and How to Get It</em> (W.W. Norton, 2009) &middot;
+    Carmichael &amp; Hamilton — <em>Black Power</em> (1967) &middot;
+    Young, James O. — <em>Cultural Appropriation and the Arts</em> (Wiley-Blackwell, 2008) &middot;
+    Yu et al. — <em>Genetics</em> 161(1) (2002, University of Chicago) · PMC1462113 &middot;
+    Lewontin — <em>The Apportionment of Human Diversity</em> (1972)
+  </p>
+`;
+
+// Append contact section then footer (contact form sits above the references list)
+main.appendChild(contactSection);
+main.appendChild(footer);
+
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById("contactSubmit");
+  const status = document.getElementById("contactStatus");
+
+  btn.disabled = true;
+  btn.textContent = "Sending…";
+  status.className = "contact-status";
+
+  try {
+    const res = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString(),
+    });
+    if (!res.ok) throw new Error(res.status);
+    status.className = "contact-status success";
+    status.textContent = "Message sent — thank you. We'll be in touch.";
+    form.reset();
+  } catch {
+    status.className = "contact-status error";
+    status.textContent = "Failed to send. Please check your connection and try again.";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Send Message";
+  }
+});
+</script>
+</body>
+</html>
