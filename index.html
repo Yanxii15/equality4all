@@ -422,7 +422,17 @@ const sections = [
         heading: "Social definition — race is a construct",
         body: "Race is a human categorisation of people based on shared physical or cultural attributes, subjective to society, place, and time. What counts as a race in America does not in other societies or eras.",
         source: "Barnshaw, John — Encyclopedia of Race, Ethnicity and Society (Sage Publications, 2008) · Britannica · Merriam-Webster",
-        link: "https://sk.sagepub.com/ency/edvol/ethnicity/chpt/race#_"
+        link: <a class="source-link" href="javascript:void(0);" onclick="
+  const choice = prompt('Which source would you like to view?\n\nType 1 for First Source\nType 2 for Second Source');
+  if (choice === '1') {
+    window.open('https://your-first-source.com', '_blank');
+  } else if (choice === '2') {
+    window.open('https://your-second-source.com', '_blank');
+  } else if (choice !== null) {
+    alert('Invalid choice. Please enter 1 or 2.');
+  }
+">[Source]</a>
+
       },
       {
         heading: "Race varies by time and place — examples",
