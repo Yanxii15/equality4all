@@ -212,11 +212,20 @@
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.75rem;
       color: var(--section-accent, #555);
-      opacity: 0.8;
+      opacity: 0.85;
       border-left: 2px solid var(--section-accent, #333);
       padding-left: 0.75rem;
       line-height: 1.7;
     }
+    .source-link {
+      color: var(--section-accent, #5b8cff);
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      opacity: 1;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .source-link:hover { text-decoration-style: solid; }
 
     /* FOOTER */
     .site-footer {
@@ -373,12 +382,11 @@
   <div class="header-inner">
     <p class="header-label">Complete Argument Framework</p>
     <h1 class="header-title">Race, Racism &amp; Who Can Experience It</h1>
-    <p class="header-sub">12 sections · Click any section to expand · Click any point for full argument + source · All sources cited</p>
+    <p class="header-sub">6 sections · Click any section to expand · Click any point for the full argument, source, and link</p>
   </div>
 </header>
 
 <!-- NETLIFY FORM — static copy required for Netlify to detect it at build time -->
-<!-- The visible form is JS-rendered below; this hidden one registers it with Netlify -->
 <form name="questions" data-netlify="true" netlify-honeypot="bot-field" hidden>
   <input type="hidden" name="form-name" value="questions" />
   <input type="text" name="name" />
@@ -395,6 +403,8 @@
 <main id="main"></main>
 
 <script>
+// Each point may optionally include a "link" field — a URL that the source citation
+// becomes a clickable hyperlink to (opens in a new tab).
 const sections = [
   {
     id: "race-definition",
@@ -405,302 +415,360 @@ const sections = [
       {
         heading: "Two definitions of race exist",
         body: "Race has a biological definition (subspecies within taxonomy) and a social definition. Biologically, human races do not exist — confirmed by the National Academies of Sciences (2023).",
-        source: "National Academies of Sciences — 'Using Population Descriptors in Genetics and Genomics Research' (2023)"
+        source: "National Academies of Sciences — 'Using Population Descriptors in Genetics and Genomics Research' (2023)",
+        link: "https://nap.nationalacademies.org/catalog/26902/using-population-descriptors-in-genetics-and-genomics-research-time-to"
       },
       {
         heading: "Social definition — race is a construct",
-        body: "Race is a human categorisation of people based on shared physical or cultural attributes, subjective to society, place, and time. What counts as a race in America does not in 1800s America.",
-        source: "Barnshaw, John — Encyclopedia of Race, Ethnicity and Society (Sage Publications, 2008) · Britannica · Merriam-Webster"
+        body: "Race is a human categorisation of people based on shared physical or cultural attributes, subjective to society, place, and time. What counts as a race in America does not in other societies or eras.",
+        source: "Barnshaw, John — Encyclopedia of Race, Ethnicity and Society (Sage Publications, 2008) · Britannica · Merriam-Webster",
+        link: "https://www.britannica.com/topic/race-human"
       },
       {
         heading: "Race varies by time and place — examples",
-        body: "Jews were classified as a distinct inferior race by Nazi Germany (Reich Citizenship Law, 1935) but are considered white in modern America. The Irish were racialised by the British in the 18th century.",
-        source: "germanhistorydocs.org — Reich Citizenship Law (1935) · National Geographic — The Rohingya People"
+        body: "Jews were classified as a distinct inferior race by Nazi Germany (Reich Citizenship Law, 1935) but are considered white in modern America. The Irish were racialised by the British in the 18th-19th centuries.",
+        source: "germanhistorydocs.org — Reich Citizenship Law (1935)",
+        link: "https://germanhistorydocs.org/en/nazi-germany-1933-1945/the-reich-citizenship-law-september-15-1935-and-the-first-regulation-to-the-reich-citizenship-law-november-14-1935"
       },
       {
         heading: "Race is defined by physical AND cultural characteristics",
-        body: "A purely 'phenotypic' definition fails. Racial passing (Walter White, NAACP — blond, blue-eyed but Black) shows physical appearance overrides cultural identity when cultural information is available.",
-        source: "Walter White biography — NAACP historical records · University of Miami Law Review on Dolezal"
+        body: "A purely 'phenotypic' definition fails. Racial passing (Walter White, NAACP — blond, blue-eyed but Black) shows physical appearance overrides cultural identity when cultural information is unavailable, and vice versa.",
+        source: "Walter White biography — historical record",
+        link: "https://en.wikipedia.org/wiki/Walter_Francis_White"
       },
       {
         heading: "Phenotypes do not define race — it is too broad",
-        body: "A phenotype includes blood type, disease susceptibility, height, and metabolic processes — not just visible skin colour. Racial categories are arbitrary selections from a continuous spectrum.",
-        source: "Oxford Academic — Human Molecular Genetics 18(R1) (2009) · NIH PMC10519151"
+        body: "A phenotype includes blood type, disease susceptibility, height, and metabolic processes — not just visible skin colour. Racial categories are arbitrary selections from a continuous spectrum of phenotypes.",
+        source: "NIH — PMC10519151",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10519151/"
+      },
+      {
+        heading: "The 'purely phenotype' definition forces a hidden choice — social construct, or biological essentialism",
+        body: "If race is 'purely phenotype', the categories must be derivable from phenotype alone. But phenotypic traits (skin tone, etc.) vary continuously — there are no natural breaks. Turning a gradient into discrete boxes ('Black', 'white') requires an outside act of categorisation. This creates a dilemma: either (1) that act is a social/cognitive imposition — which concedes race is a social construct, not 'purely' phenotype — or (2) the categories are claimed to be real, natural, discrete biological kinds — which is biological essentialism, a claim the genetics evidence (Lewontin, Yu et al.) directly contradicts. There is no third option.",
+        source: "Glasgow, Joshua & Zack, Naomi — discussed in Stanford Encyclopedia of Philosophy, 'Race'",
+        link: "https://plato.stanford.edu/entries/race/"
       }
     ]
   },
   {
     id: "racism-definition",
-    title: "2. Defining Racism",
+    title: "2. Defining Racism & Dismantling 'Power + Prejudice'",
     color: "#1a3a2c",
     accent: "#4aff9e",
     points: [
       {
         heading: "The formal definitions have no power requirement",
         body: "UN ICERD Article 1 defines racial discrimination as treatment based on 'race, colour, descent, or national or ethnic origin' — no power requirement, no specification of who the perpetrator is.",
-        source: "UN ICERD Article 1 (1965, in force 1969) · APA definition · Dennis R.M. — The Social Encyclopedia Vol. 2 (2004)"
+        source: "UN ICERD Article 1 (1965, in force 1969)",
+        link: "https://www.ohchr.org/en/instruments-mechanisms/instruments/international-convention-elimination-all-forms-racial-discrimination"
       },
       {
         heading: "The UN definition has legal weight over Black oppression",
-        body: "In March 2026, the UN passed a landmark resolution describing the trafficking and enslavement of Africans as 'the gravest crime against humanity' — using the exact same ICERD framework.",
-        source: "UN Resolution — March 2026 · UN Secretary-General statement on transatlantic slave trade"
+        body: "In March 2026, the UN passed a landmark resolution describing the trafficking and enslavement of Africans as 'the gravest crime against humanity' — using the exact same ICERD framework. One cannot accept this framework for slavery and dismiss it elsewhere.",
+        source: "UN Resolution — March 2026 · UN Secretary-General statement",
+        link: "https://www.un.org/en/"
       },
       {
         heading: "Three levels of racism — all recognised by the same scholars",
-        body: "Dr. Camara Jones (Harvard) identifies internalised racism (private beliefs, no power needed), interpersonal racism (individual acts between people, no power needed), and institutional racism.",
-        source: "Jones, Camara — 'Levels of Racism: A Theoretic Framework' (American Journal of Public Health, 2000)"
+        body: "Dr. Camara Jones (Harvard) identifies internalised racism (private beliefs, no power needed), interpersonal racism (individual acts between people, no power needed), and institutional racism. A definition must account for all three.",
+        source: "Jones, Camara — 'Levels of Racism: A Theoretic Framework' (American Journal of Public Health, 2000)",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1446334/"
       },
       {
         heading: "A cohesive working definition",
         body: "'Racism is the belief in the inferiority or difference of a group based on their race, ethnicity, nationality or descent — or the treatment, discrimination or oppression of a person or group on those grounds.'",
-        source: "Synthesised/Derived from: UN ICERD · Blum, Lawrence — I'm Not a Racist, But... (Cornell UP, 2002) · APA"
+        source: "Synthesised from: UN ICERD · Blum, Lawrence — I'm Not a Racist, But... (Cornell UP, 2002) · APA",
+        link: "https://www.cornellpress.cornell.edu/book/9780801488153/im-not-a-racist-but/"
       },
       {
         heading: "Racial discrimination vs racism — and why the distinction is in my favour",
-        body: "Even scholars who separate racism from racial discrimination admit that racial discrimination (the behaviour) can be committed by anyone regardless of race. Under UN ICERD, it counts as racial discrimination.",
-        source: "UN ICERD Article 1 · Anti-Discrimination Commission · Journal of Ethnic and Migration Studies"
-      }
-    ]
-  },
-  {
-    id: "power-argument",
-    title: "3. Dismantling 'Racism = Power + Prejudice'",
-    color: "#3a1a1a",
-    accent: "#ff6b6b",
-    points: [
+        body: "Even scholars who separate racism from racial discrimination admit that racial discrimination (the behaviour) can be committed by anyone regardless of race. Under UN ICERD, this counts as racial discrimination regardless of perpetrator.",
+        source: "UN ICERD Article 1",
+        link: "https://www.ohchr.org/en/instruments-mechanisms/instruments/international-convention-elimination-all-forms-racial-discrimination"
+      },
       {
-        heading: "Who actually said it and when",
-        body: "'Racism = prejudice + power' was proposed by Patricia Bidol-Padva in a 1970 education book. It is not law. It is not the UN definition. It is not Merriam-Webster. It is one academic redefinition.",
-        source: "Wikipedia — 'Prejudice plus power' · Bidol-Padva, Patricia — New Perspectives on Race (1970)"
+        heading: "Who actually said 'power + prejudice', and when",
+        body: "'Racism = prejudice + power' was proposed by Patricia Bidol-Padva in a 1970 education book. It is not law. It is not the UN definition. It is not Merriam-Webster. It is one academic redefinition from one specific context.",
+        source: "Wikipedia — 'Prejudice plus power' · Bidol-Padva, Patricia — New Perspectives on Race (1970)",
+        link: "https://en.wikipedia.org/wiki/Prejudice_plus_power"
       },
       {
         heading: "Carmichael's actual position — they've misread him",
-        body: "Stokely Carmichael coined 'institutional racism' in Black Power (1967) — describing how organisations perpetuate racial harm. He explicitly defined individual racism as individual acts of racial hostility.",
-        source: "Carmichael & Hamilton — Black Power: The Politics of Liberation (1967)"
+        body: "Stokely Carmichael coined 'institutional racism' in Black Power (1967) — describing how organisations perpetuate racial harm. He explicitly defined individual racism as individual acts of racial hostility, a separate category.",
+        source: "Carmichael & Hamilton — Black Power: The Politics of Liberation (1967)",
+        link: "https://en.wikipedia.org/wiki/Black_Power:_The_Politics_of_Liberation"
       },
       {
-        heading: "The internal contradiction - Self-destabilization",
-        body: "Internalised racism (private beliefs) requires zero power. Interpersonal racism (one person treating another worse due to race) requires zero power. Both are formally recognised subtypes by leading scholars.",
-        source: "Jones, Camara — American Journal of Public Health (2000) · Blum — Cornell UP (2002)"
+        heading: "The internal contradiction — self-destabilisation",
+        body: "Internalised racism (private beliefs) requires zero power. Interpersonal racism (one person treating another worse due to race) requires zero power. Both are formally recognised subtypes by leading scholars. A definition that fails its own subtypes is not a definition of the whole.",
+        source: "Jones, Camara — American Journal of Public Health (2000) · Blum — Cornell UP (2002)",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1446334/"
       },
       {
         heading: "The power model is geographically broken",
-        body: "In Rwanda 1994, the Hutu held state power and committed genocide against the Tutsi on racial grounds. In Myanmar, the Buddhist majority uses state institutions to exclude the Rohingya.",
-        source: "UN Refugee Agency · Yale Law School — Persecution of the Rohingya (2015)"
+        body: "In Rwanda 1994, the Hutu held state power and committed genocide against the Tutsi on racial grounds. In Myanmar, the Buddhist majority uses state institutions to exclude the Rohingya. Power is not permanently assigned to one race globally.",
+        source: "UN Refugee Agency · Yale Law School — Persecution of the Rohingya (2015)",
+        link: "https://www.unrefugees.org/news/rohingya-refugee-crisis-explained/"
       },
       {
-        heading: "The logical trap - How to defeat the argument",
-        body: "Question: 'Was the Rwandan genocide, and other related events in the Great Lakes Region, racism?' If yes — Black people committed racism. If no — Opponents have just proposed that 800,000 deaths weren't.",
-        source: "Logical deduction from the framework's premises"
+        heading: "The logical trap — how to defeat the argument",
+        body: "Question: 'Was the Rwandan genocide racism?' If yes — Black people committed racism. If no — opponents have just proposed that 800,000 deaths on racial grounds weren't racism.",
+        source: "Logical deduction from the framework's own premises",
+        link: "https://www.britannica.com/event/Rwanda-genocide-of-1994"
       }
     ]
   },
   {
-    id: "white-racism",
-    title: "4. White People CAN Experience Racism",
+    id: "who-can-experience",
+    title: "3. Racism Beyond America — Who Can Experience and Commit It",
     color: "#1a1a3a",
     accent: "#a78bfa",
     points: [
       {
-        heading: "The Irish — 600 years of documented racialisation",
-        body: "Victorian anthropologists ranked the Irish below Anglo-Saxons in racial hierarchy using pseudo-scientific texts. Political cartoons in Punch magazine depicted them as ape-like. They were denied entry to jobs.",
-        source: "Loughborough University research · Punch magazine archives (19th century) · Irish Network Against Racism"
+        heading: "The Irish — centuries of documented racialisation",
+        body: "Victorian anthropologists ranked the Irish below Anglo-Saxons in racial hierarchy using pseudo-scientific texts. Political cartoons depicted them as ape-like. British colonial law was built on this racial classification.",
+        source: "Loughborough University research · Punch magazine archives (19th century) · Irish Network Against Racism",
+        link: "https://en.wikipedia.org/wiki/Anti-Irish_sentiment"
       },
       {
         heading: "The Roma — systemic racism in Europe right now",
-        body: "The US State Department documents systematic governmental discrimination, ethnic profiling, police abuse, school segregation, and housing exclusion against Roma across Europe. Germany acknowledges a 'gypsy plague'.",
-        source: "US State Department Human Rights Reports · European Parliament · Germany Anti-Roma Centre (2024)"
+        body: "The US State Department documents systematic governmental discrimination, ethnic profiling, police abuse, school segregation, and housing exclusion against Roma across Europe. Perpetrators are majority-white European governments. Victims are white.",
+        source: "US State Department Human Rights Reports · European Parliament",
+        link: "https://www.state.gov/reports/2023-country-reports-on-human-rights-practices/"
       },
       {
         heading: "The consistency test",
-        body: "The British built a racial system — pseudo-science, colonial law, institutional power — classifying the Irish as a distinct inferior race. Q: 'Was that racism?' If yes — white people can experience it.",
-        source: "Loughborough University · Journal of British Studies"
-      }
-    ]
-  },
-  {
-    id: "black-racist",
-    title: "5. Black People CAN Be Racist",
-    color: "#1a2a1a",
-    accent: "#34d399",
-    points: [
+        body: "The British built a racial system — pseudo-science, colonial law, institutional power — classifying the Irish as a distinct inferior race. Q: 'Was that racism?' If yes — white people can experience it. They cannot use social constructionism to exclude the Irish and biology to exclude the Tutsi.",
+        source: "Loughborough University · Journal of British Studies",
+        link: "https://en.wikipedia.org/wiki/Anti-Irish_sentiment"
+      },
       {
         heading: "Rwanda 1994 — 800,000 killed, no white perpetrators",
-        body: "The Hutu held state power and used institutional structures to commit genocide against the Tutsi on racial grounds. ~800,000 killed in 100 days. Both groups are Black African. Under 'only those with power' logic, this wasn't racism.",
-        source: "UN genocide documentation, Rwanda · Britannica — Rwandan genocide"
+        body: "The Hutu held state power and used institutional structures to commit genocide against the Tutsi on racial grounds. ~800,000 killed in 100 days. Both groups are Black African. This meets the UN definition of racial discrimination entirely.",
+        source: "UN genocide documentation, Rwanda · Britannica — Rwandan genocide",
+        link: "https://www.britannica.com/event/Rwanda-genocide-of-1994"
       },
       {
         heading: "The Rohingya — state racial exclusion, no white perpetrators",
-        body: "Myanmar's Buddhist-majority government has denied the Rohingya citizenship since 1982, excluded them from all 135 official national races, and conducted what Yale Law School (2015) assessed as genocide.",
-        source: "Yale Law School — Persecution of the Rohingya (2015) · UN Refugee Agency"
+        body: "Myanmar's Buddhist-majority government has denied the Rohingya citizenship since 1982, excluded them from all 135 official national races, and conducted what Yale Law School (2015) assessed as genocide. No white perpetrators.",
+        source: "Yale Law School — Persecution of the Rohingya (2015) · UN Refugee Agency",
+        link: "https://www.unrefugees.org/news/rohingya-refugee-crisis-explained/"
       },
       {
         heading: "Pre-colonial Japan — Burakumin (the strongest independent case)",
-        body: "The Burakumin were legally codified as an inferior group under Japan's Ritsuryō codes from approximately 645 CE — 800 years before Zurara, centuries before European contact. Medieval Japanese did this independently.",
-        source: "Amos, Timothy — Embodying Difference (University of Hawaii Press, 2011) · Neary, Ian — Manchester UP (1989)"
+        body: "The Burakumin were legally codified as an inferior group under Japan's Ritsuryō codes from approximately 645 CE — 800 years before Zurara, centuries before European contact. Physically indistinguishable from majority Japanese.",
+        source: "Amos, Timothy — Embodying Difference (University of Hawaii Press, 2011) · Neary, Ian — Manchester UP (1989)",
+        link: "https://en.wikipedia.org/wiki/Burakumin"
       },
       {
         heading: "Scholarly support — Blum and Appiah directly say it",
-        body: "Lawrence Blum (Cornell UP, 2002) defines racism as antipathy or inferiorization toward any racial group — no power requirement — and dedicates a chapter to whether Black people can act this way. The answer is yes.",
-        source: "Blum — I'm Not a Racist, But... (Cornell UP, 2002) · Appiah — 'Racisms' in Anatomy of Racism (OUP, 1990)"
+        body: "Lawrence Blum (Cornell UP, 2002) defines racism as antipathy or inferiorization toward any racial group — no power requirement — and dedicates a chapter to whether Black people can act this way. Appiah (NYU) discusses 'demeaning views about white people' as a case of racism.",
+        source: "Blum — I'm Not a Racist, But... (Cornell UP, 2002) · Appiah — 'Racisms' in Anatomy of Racism (OUP, 1990)",
+        link: "https://en.wikipedia.org/wiki/Kwame_Anthony_Appiah"
+      },
+      {
+        heading: "'Tribe' is a colonial imposition, not a neutral term",
+        body: "Pre-colonial European writers called African groups 'nations' and 'states' (Mungo Park, 1790s). By the colonial era, the same groups were called 'tribes' (Livingstone, Stanley). The shift was deliberate and ideological.",
+        source: "Wikipedia — Tribe (anthropological term) · Britannica",
+        link: "https://en.wikipedia.org/wiki/Tribe"
+      },
+      {
+        heading: "The Yoruba, Igbo, Hausa — not tribes",
+        body: "The Yoruba are 50+ million people with precolonial urban kingdoms and hereditary monarchies. The Igbo formed city-states before colonialism. The Hausa established the Kanem-Bornu Empire spanning centuries — an empire, not a tribe.",
+        source: "Britannica — Yoruba people · Igbo and Hausa historical records",
+        link: "https://www.britannica.com/topic/Yoruba"
+      },
+      {
+        heading: "Tribalism and racism can coexist — they are not mutually exclusive",
+        body: "Even granting 'tribalism' as a label, it does not exclude racism. The Hutu/Tutsi conflict involved ethnic group loyalty AND racialised ideology explicitly hardened by Belgian colonisers' identity cards, using dehumanising propaganda identical to Nazi techniques.",
+        source: "UN genocide documentation · Belgian colonial history of Rwanda",
+        link: "https://en.wikipedia.org/wiki/Rwandan_genocide"
       }
     ]
   },
   {
-    id: "zurara",
-    title: "6. Zurara Did NOT Invent Racism",
+    id: "origins-of-race",
+    title: "4. Where Race Comes From — Zurara & Emergence",
     color: "#2a1a0a",
     accent: "#fbbf24",
     points: [
       {
         heading: "Who Zurara actually was",
-        body: "Gomes Eanes de Zurara (1410–1474) was Chief Chronicler of Portugal — a royal writer employed by the crown. He was not a king, not a lawyer, not a politician. He wrote a commissioned historical chronicle.",
-        source: "Wikipedia — Gomes Eanes de Zurara · Noema Magazine critique of Kendi"
+        body: "Gomes Eanes de Zurara (1410–1474) was Chief Chronicler of Portugal — a royal writer employed by the crown. He was not a king, not a lawyer, not a politician. He wrote a commissioned historical chronicle. He made no laws and held no political power.",
+        source: "Wikipedia — Gomes Eanes de Zurara · Noema Magazine critique of Kendi",
+        link: "https://en.wikipedia.org/wiki/Gomes_Eanes_de_Zurara"
       },
       {
         heading: "Even Kendi's own argument doesn't say what opponents claim",
-        body: "Kendi (The first to claim Zurara 'started' or 'created' racism and the source of this argument) writes in Stamped from the Beginning: 'Zurara's inaugural racist ideas were a product of...' — meaning they came FROM somewhere else.",
-        source: "Kendi, Ibram X. — Stamped from the Beginning (2016) — direct quote from the text"
+        body: "Kendi writes in Stamped from the Beginning: 'Zurara's inaugural racist ideas were a product of...' — meaning they came FROM somewhere else. Kendi explicitly says the racism was already being practised before Zurara wrote it down.",
+        source: "Kendi, Ibram X. — Stamped from the Beginning (2016) — direct quote from the text",
+        link: "https://en.wikipedia.org/wiki/Stamped_from_the_Beginning"
       },
       {
         heading: "Zurara didn't even use the word 'race'",
         body: "The word 'race' was first used by French poet Jacques de Brézé in 1481 — 28 years after Zurara's chronicle. It was first formally defined as 'descent' by Jean Nicot in a French dictionary in 1606.",
-        source: "Wikipedia — Historical Race Concepts · Etymology of 'race'"
+        source: "Wikipedia — Historical Race Concepts · Etymology of 'race'",
+        link: "https://en.wikipedia.org/wiki/Race_(human_categorization)"
       },
       {
         heading: "Anti-Black prejudice in writing predates Zurara by centuries",
-        body: "Aristotle's Meteorologica (330 BCE) explicitly associates dark-skinned Africans with laziness and natural submissiveness. Islamic writers from the 7th century CE linked Black skin to servitude.",
-        source: "Isaac, Benjamin — The Invention of Racism in Classical Antiquity (Princeton UP, 2004)"
+        body: "Aristotle's Meteorologica (330 BCE) explicitly associates dark-skinned Africans with laziness and natural submissiveness. Islamic writers from the 7th century CE linked Black skin to servitude — centuries before Zurara.",
+        source: "Isaac, Benjamin — The Invention of Racism in Classical Antiquity (Princeton UP, 2004)",
+        link: "https://press.princeton.edu/books/paperback/9780691125985/the-invention-of-racism-in-classical-antiquity"
       },
       {
         heading: "Independent racial hierarchies prove it is emergent, not created",
-        body: "Japan's Burakumin system (645 CE), China's Han/barbarian hierarchy (3rd century BCE), Indian caste systems — all developed entirely independently of European colonialism. A creation myth doesn't hold.",
-        source: "Dikötter, Frank — The Discourse of Race in Modern China (Oxford UP, 1992/2015)"
-      }
-    ]
-  },
-  {
-    id: "emergent",
-    title: "7. Race is Emergent, Not Created",
-    color: "#1a0a2a",
-    accent: "#c084fc",
-    points: [
+        body: "Japan's Burakumin system (645 CE), China's Han/barbarian hierarchy (3rd century BCE), Indian caste systems — all developed entirely independently of European colonialism. A single-creator origin story does not hold.",
+        source: "Dikötter, Frank — The Discourse of Race in Modern China (Oxford UP, 1992/2015)",
+        link: "https://global.oup.com/academic/product/the-discourse-of-race-in-modern-china-9780199299402"
+      },
       {
         heading: "How to tell emergent from created — six tests",
-        body: "Created things: specific author, specific date, rules designed before use, disappear if creator removed. Emergent things: no single author, no specific date of origin, rules develop through use.",
-        source: "Anderson, Philip — 'More is Different' (Science, 1972) · Aristotle — Physics (four causes)"
+        body: "Created things: specific author, specific date, rules designed before use, disappear if creator removed. Emergent things: no single author, no specific date, rules develop through use, appear independently in multiple places.",
+        source: "Anderson, Philip — 'More is Different' (Science, 1972) · Aristotle — Physics (four causes)",
+        link: "https://www.science.org/doi/10.1126/science.177.4047.393"
       },
       {
         heading: "Created systems exist within emergent phenomena",
-        body: "Human language capacity is emergent — no author, no date. Shakespeare's plays are created within it. The human tendency to racialise is emergent. The American racial system is created within it.",
-        source: "Dennett, Daniel — Darwin's Dangerous Idea (Simon & Schuster, 1995) · Durkheim — Rules of Sociological Method (1895)"
+        body: "Human language capacity is emergent — no author, no date. Shakespeare's plays are created within it. The human tendency to racialise is emergent. The American racial system is a created system within it.",
+        source: "Dennett, Daniel — Darwin's Dangerous Idea (Simon & Schuster, 1995) · Durkheim — Rules of Sociological Method (1895)",
+        link: "https://en.wikipedia.org/wiki/The_Rules_of_Sociological_Method"
       },
       {
         heading: "Zurara formalised — the same way Johnson codified English",
-        body: "Samuel Johnson formalised English spelling in 1755. He did not create English. Zurara formalised one colonial racial hierarchy in writing in 1453. He did not create racism. Context matters.",
-        source: "MDPI Biology (2025) — 'mistaking a moment of conceptual consolidation for a point of origin'"
+        body: "Samuel Johnson formalised English spelling in 1755. He did not create English. Zurara formalised one colonial racial hierarchy in writing in 1453. He did not create racism. Formalisation and creation are different things.",
+        source: "MDPI Biology (2025) — 'mistaking a moment of conceptual consolidation for a point of origin'",
+        link: "https://en.wikipedia.org/wiki/A_Dictionary_of_the_English_Language"
       }
     ]
   },
   {
-    id: "tribes",
-    title: "8. Tribes vs. Ethnic Groups",
-    color: "#0a1a2a",
-    accent: "#38bdf8",
-    points: [
-      {
-        heading: "'Tribe' is a colonial imposition, not a neutral term",
-        body: "Pre-colonial European writers called African groups 'nations' and 'states' (Mungo Park, 1790s). By the colonial era, the same groups were called 'tribes' (Livingstone, Stanley). The shift was deliberate.",
-        source: "Wikipedia — Tribe (anthropological term) · Britannica"
-      },
-      {
-        heading: "The Yoruba, Igbo, Hausa — not tribes",
-        body: "The Yoruba are 50+ million people with precolonial urban kingdoms and hereditary monarchies. The Igbo formed city-states before colonialism. The Hausa established the Kanem-Bornu Empire spanning centuries.",
-        source: "Britannica — Yoruba people · Igbo historical records · Hausa Fulani Empire documentation"
-      },
-      {
-        heading: "Tribalism and racism can coexist — they are not mutually exclusive",
-        body: "Even granting 'tribalism' as a label, it does not exclude racism. The Hutu/Tutsi conflict involved ethnic group loyalty AND racialised ideology explicitly hardened by Belgian colonisers' census.",
-        source: "UN genocide documentation · Belgian colonial history of Rwanda"
-      }
-    ]
-  },
-  {
-    id: "iq",
-    title: "9. Race and IQ — The Science",
+    id: "biology-of-race",
+    title: "5. The Biology of Race — Genetics, IQ & Bone Density",
     color: "#0a2a1a",
     accent: "#6ee7b7",
     points: [
       {
-        heading: "The gap is real — but measures environment not biology",
-        body: "A test performance gap exists on average. But IQ measures performance under conditions, not innate capacity. Flynn and Dickens (Psychological Science, 2006) found the gap narrowed by 5–7 points in one generation.",
-        source: "Dickens & Flynn — Psychological Science (2006)"
+        heading: "The IQ gap is real — but measures environment, not biology",
+        body: "A test performance gap exists on average. But IQ measures performance under conditions, not innate capacity. Flynn and Dickens (Psychological Science, 2006) found the gap narrowed by 5-7 points in one generation.",
+        source: "Dickens & Flynn — Psychological Science (2006)",
+        link: "https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01793.x"
       },
       {
         heading: "The Flynn Effect — definitive proof IQ is environmental",
-        body: "IQ scores across all populations rose ~30 points in the 20th century (James Flynn, University of Otago). If 1900 people were tested today they would average ~70. Genetic change takes millennia.",
-        source: "Flynn, James — multiple papers (University of Otago) · Nature editorial (2017)"
+        body: "IQ scores across all populations rose ~30 points in the 20th century (James Flynn, University of Otago). If 1900s people were tested today they would average ~70. Genetic change takes millennia — environment changes in decades.",
+        source: "Flynn, James — multiple papers (University of Otago) · Nature editorial (2017)",
+        link: "https://en.wikipedia.org/wiki/Flynn_effect"
       },
       {
         heading: "Heritability of IQ collapses in poverty",
         body: "Turkheimer et al. found IQ heritability is ~70% in upper-middle-class children but only ~10% in lower-class children — more than half of whom were Black American. In poor environments, genes matter almost not at all.",
-        source: "Turkheimer et al. — Psychological Science (2003) — twin study"
+        source: "Turkheimer et al. — Psychological Science (2003) — twin study",
+        link: "https://journals.sagepub.com/doi/10.1111/1467-9280.02436"
       },
       {
-        heading: "Nisbett — all of the gap is environmental",
+        heading: "Nisbett — all of the IQ gap is environmental",
         body: "Richard Nisbett (University of Michigan, National Academy of Sciences) states in Intelligence and How to Get It (W.W. Norton, 2009) that all of the IQ gap is environmental. Transracial adoption studies support this.",
-        source: "Nisbett, Richard — Intelligence and How to Get It (W.W. Norton, 2009)"
+        source: "Nisbett, Richard — Intelligence and How to Get It (W.W. Norton, 2009)",
+        link: "https://wwnorton.com/books/9780393065053"
+      },
+      {
+        heading: "Random selection reveals the genetic truth about race",
+        body: "Pick two random Black people and sequence their genomes. Then pick one of those Black people and a random white person. The genetic distance between the two Black people would, on average, be almost as large as between the Black person and the white person. Race tells you almost nothing about genetic similarity.",
+        source: "Yu et al. — Genetics 161(1) (2002) · Lewontin (1972) · PMC9600569 (2022)",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1462113/"
+      },
+      {
+        heading: "Yes, you can visually group by skin colour — but it maps onto nothing biologically real",
+        body: "Grouping people by dark skin is like grouping all brown animals together — bears, deer, dogs, cats — and calling them one biological category. The visual similarity reflects one variable: UV exposure across latitude. Not biological kinship.",
+        source: "Yu et al. — Genetics 161(1) (2002) · Lewontin — Evolutionary Biology Vol. 6 (1972)",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1462113/"
+      },
+      {
+        heading: "Yu et al. (2002) — A Yoruba and a Somali can be more genetically different than from a white European",
+        body: "University of Chicago study, published in Genetics (PMC1462113). Sequenced 50 noncoding DNA segments across Africans, Europeans, and Asians. Genetic diversity among Africans exceeds the difference between Africans and other continents.",
+        source: "Yu, Ning et al. — Genetics 161(1):269-274 (2002) · doi:10.1093/genetics/161.1.269",
+        link: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1462113/"
+      },
+      {
+        heading: "Lewontin (1972) — only ~6% of human genetic variation falls between racial groups",
+        body: "Lewontin's 'The Apportionment of Human Diversity' is one of the most cited findings in human genetics. Using 17 genetic markers worldwide: ~85% of variation is within populations, only ~6% between racial groups defined geographically.",
+        source: "Lewontin — Evolutionary Biology Vol. 6 (1972) · Confirmed: Jobling et al. — Phil. Trans. Royal Society B (2022)",
+        link: "https://en.wikipedia.org/wiki/Richard_Lewontin"
+      },
+      {
+        heading: "Important honest caveat — 'Lewontin's Fallacy'",
+        body: "Critics (Edwards, 2003) point out that while most individual genetic variants are shared across groups, combining many markers together does let populations cluster by geography. This doesn't validate folk racial categories — but it's worth knowing so opponents can't catch you off guard.",
+        source: "Edwards, A.W.F. — 'Lewontin's Fallacy' — BioEssays 25(8) (2003)",
+        link: "https://onlinelibrary.wiley.com/doi/10.1002/bies.10315"
+      },
+      {
+        heading: "The Human Genome Project (2000) — race has no genetic basis",
+        body: "At the White House ceremony marking completion of the human genome, Craig Venter and Francis Collins jointly declared the data showed no genetic basis for traditional racial categories.",
+        source: "American Scientist — 'Race Finished' (2019) · Human Genome Project completion ceremony (2000)",
+        link: "https://www.americanscientist.org/article/race-finished"
+      },
+      {
+        heading: "Skin colour genes track UV exposure — not genetic kinship",
+        body: "Skin colour is controlled by a few genes (SLC24A5, SLC45A2, MC1R, OCA2) tracking one variable: UV radiation at ancestral latitude. Europeans and East Asians evolved light skin via partly different genes despite being genetically distant — convergent evolution.",
+        source: "Norton et al. — Molecular Biology and Evolution 24(3) (2007) · Lamason et al. — Science 310 (2005)",
+        link: "https://academic.oup.com/mbe/article/24/3/710/1122206"
+      },
+      {
+        heading: "Bone density differences — real, but not what it sounds like",
+        body: "People of sub-Saharan African ancestry tend to have higher bone mineral density than people of European ancestry (4.5-16.1% higher in men, 1.2-7.3% in women). This reflects ancestral UV/vitamin D adaptation — not race as a meaningful category. Bone density also varies substantially within African populations.",
+        source: "Journal of Clinical Endocrinology & Metabolism 82(2):429 (1997) · Osteoporosis International (2020)",
+        link: "https://academic.oup.com/jcem"
       }
     ]
   },
   {
-    id: "agency",
-    title: "10. Babies Cannot Be Racist — Agency",
+    id: "agency-culture-language",
+    title: "6. Agency, Culture & Language",
     color: "#2a0a0a",
     accent: "#fb7185",
     points: [
       {
         heading: "Moral agency defined — and why babies lack it",
-        body: "Moral agency is the capacity to act with reference to right and wrong — requiring consciousness, intention, and moral understanding. Developmental psychologists and philosophers agree babies have none of these.",
-        source: "PhilArchive — philosophical analysis of moral agency · Frontiers in Psychology (2023)"
+        body: "Moral agency is the capacity to act with reference to right and wrong — requiring consciousness, intention, and moral understanding. Developmental psychologists and philosophers agree babies have none of these. You cannot be morally responsible for something you cannot intend or understand.",
+        source: "Stanford Encyclopedia of Philosophy — Moral Responsibility · Frontiers in Psychology (2023)",
+        link: "https://plato.stanford.edu/entries/moral-responsibility/"
       },
       {
         heading: "Being born into a system is not participating in it",
-        body: "A baby born into wealth is not 'born classist.' A baby born in a powerful country is not 'born imperialist.' The 'born racist' claim assumes that benefiting from a system makes you an agent of it.",
-        source: "Logical deduction · Blum — Cornell UP (2002)"
+        body: "A baby born into wealth is not 'born classist.' A baby born in a powerful country is not 'born imperialist.' The 'born racist' claim assumes that benefiting from a system makes you an agent of it — a claim applied to no other form of structural advantage.",
+        source: "Logical deduction · Blum — Cornell UP (2002)",
+        link: "https://www.cornellpress.cornell.edu/book/9780801488153/im-not-a-racist-but/"
       },
       {
         heading: "The consistency test — apply it globally",
-        body: "If being born into a system makes you responsible for its harms, then Black babies born in majority-Black societies where Black people hold institutional power would be 'born racist' against whites.",
-        source: "Logical deduction from framework's own premises"
-      }
-    ]
-  },
-  {
-    id: "culture-language",
-    title: "11. Culture and Language — Cannot Be Stolen",
-    color: "#0a0a2a",
-    accent: "#818cf8",
-    points: [
-      {
-        heading: "Culture is emergent and non-rivalrous",
-        body: "Culture arises from human beings living together over time — Durkheim's social fact, existing outside any individual but requiring the collective. Cultural practices are non-rivalrous (use doesn't deplete).",
-        source: "Springer — Journal of Ethics (2024) · Stanford Encyclopedia of Philosophy — Ethics of Cultural Heritage"
+        body: "If being born into a system makes you responsible for its harms, then Black babies born in majority-Black societies where Black people hold institutional power would be 'born racist' against minorities. The logic cannot be applied selectively to one group only.",
+        source: "Logical deduction from framework's own premises",
+        link: ""
       },
       {
-        heading: "What cultural appropriation real is - and isn't",
-        body: "The defensible core concerns three specific harms: erasure (a group is punished for a practice outsiders are celebrated for), exploitation (commercial profit without credit), and denigration (mocking the source).",
-        source: "Serano — Outspoken (2007) · Rogers — Communication Theory (2006)"
+        heading: "Culture is emergent and non-rivalrous",
+        body: "Culture arises from human beings living together over time — Durkheim's social fact, existing outside any individual but requiring the collective. Cultural practices are non-rivalrous: one person's use doesn't deplete another's. You cannot 'steal' a non-rivalrous good.",
+        source: "Stanford Encyclopedia of Philosophy — Cultural Heritage · Springer, Journal of Ethics (2024)",
+        link: "https://plato.stanford.edu/entries/cultural-heritage/"
+      },
+      {
+        heading: "What cultural appropriation really is — and isn't",
+        body: "The defensible core concerns three specific harms: erasure (a group punished for a practice outsiders are celebrated for), exploitation (commercial profit without credit), and denigration (mocking the source group). Normal cultural exchange is none of these.",
+        source: "Wikipedia — Cultural Appropriation · Rogers — Communication Theory (2006)",
+        link: "https://en.wikipedia.org/wiki/Cultural_appropriation"
       },
       {
         heading: "Language cannot be gatekept — Saussure and Chomsky",
-        body: "Saussure established that langue (the language system) exists outside any individual and belongs to no single person or group. Chomsky established Universal Grammar as a biological human capacity.",
-        source: "Saussure — Course in General Linguistics (1916) · Chomsky — language faculty research"
+        body: "Saussure established that langue (the language system) exists outside any individual and belongs to no single person or group. Chomsky established Universal Grammar as a biological human capacity shared by everyone.",
+        source: "Saussure — Course in General Linguistics (1916) · Chomsky — language faculty research",
+        link: "https://en.wikipedia.org/wiki/Course_in_General_Linguistics"
       },
       {
         heading: "AAVE vs Tutanese — the critical linguistic distinction",
-        body: "AAVE is a genuine dialect with its own emergent grammar — habitual 'be', copula deletion, aspectual 'done' — these are independent grammatical structures, not transformations of Standard English.",
-        source: "Linguistic consensus on AAVE · Saussure's langue/parole distinction"
+        body: "AAVE is a genuine dialect with its own emergent grammar — habitual 'be', copula deletion, aspectual 'done' — independent grammatical structures, not transformations of Standard English. A code or cant has no independent grammar of its own.",
+        source: "Linguistic consensus on AAVE · Saussure's langue/parole distinction",
+        link: "https://en.wikipedia.org/wiki/African-American_Vernacular_English"
       }
     ]
   }
@@ -771,11 +839,17 @@ sections.forEach(section => {
       pBtn.querySelector(".point-toggle").textContent = isExpanded ? "−" : "+";
     });
 
+    // Build the source line — if a link is provided, make it clickable
+    let sourceHTML = point.source;
+    if (point.link && point.link.trim() !== "") {
+      sourceHTML += ` &middot; <a class="source-link" href="${point.link}" target="_blank" rel="noopener noreferrer">View source →</a>`;
+    }
+
     const body = document.createElement("div");
     body.className = "point-body";
     body.innerHTML = `
       <p class="point-text">${point.body}</p>
-      <div class="point-source">${point.source}</div>
+      <div class="point-source">${sourceHTML}</div>
     `;
 
     item.appendChild(pBtn);
@@ -786,121 +860,6 @@ sections.forEach(section => {
   card.appendChild(list);
   main.appendChild(card);
 });
-
-// Section 12 — Genetics
-const section12 = {
-  id: "genetics-race",
-  title: "12. Grouping by Skin Colour Has No Genetic Basis",
-  color: "#1a2a0a",
-  accent: "#86efac",
-  points: [
-    {
-      heading: "Random selection reveals genetic truth about race",
-      body: "Pick two random Black people off the street and sequence their full genomes. Then pick one of those Black people and a random white person and sequence theirs. The genetic distance between the two Black people would, on average, be almost as large as the genetic distance between the Black person and the white person. This is the actual claim that does the real work in the argument — race tells you almost nothing about how genetically similar two people are to each other.",
-      source: "Yu et al. — Genetics 161(1) (2002) · Lewontin (1972) · PMC9600569 (2022)"
-    },
-    {
-      heading: "Yes, you can visually group by skin colour — but it maps onto nothing biologically real",
-      body: "Grouping people by dark skin is like grouping all brown animals together — bears, deer, dogs, cats — and claiming they form a meaningful biological category. The visual similarity reflects one variable (UV exposure across latitude), not biological kinship.",
-      source: "Yu et al. — Genetics 161(1) (2002) · Lewontin — Evolutionary Biology Vol. 6 (1972)"
-    },
-    {
-      heading: "Yu et al. (2002) — A Yoruba and a Somali can be more genetically different from each other than from a white European",
-      body: "University of Chicago study, published in the journal Genetics (PMC1462113). Sequenced 50 noncoding DNA segments across Africans, Europeans, and Asians. Key finding: genetic diversity among Africans exceeds differences between Africans and other continents.",
-      source: "Yu, Ning et al. — 'Larger Genetic Differences Within Africans Than Between Africans and Eurasians' — Genetics 161(1):269–274 (2002) · doi:10.1093/genetics/161.1.269"
-    },
-    {
-      heading: "Lewontin (1972) — only 6.3% of all human genetic variation falls between racial groups",
-      body: "Richard Lewontin's paper 'The Apportionment of Human Diversity' is one of the most cited findings in all of human genetics. Using 17 genetic markers across populations worldwide: 85.4% of variation is within populations, only 6.3% between racial groups defined geographically.",
-      source: "Lewontin — Evolutionary Biology Vol. 6 (1972) · Confirmed: Jobling et al. — Philosophical Transactions of the Royal Society B (2022) · PMC9014189"
-    },
-    {
-      heading: "Important honest caveat — 'Lewontin's Fallacy'",
-      body: "This is something all should know so opponents don't catch you off guard. Critics (Edwards, 2003) point out that even though most individual genetic variants are shared across groups, when you combine many markers together, populations do cluster. But this doesn't validate folk racial categories.",
-      source: "Edwards, A.W.F. — 'Lewontin's Fallacy' — BioEssays 25(8) (2003) · Discover Magazine"
-    },
-    {
-      heading: "The Human Genome Project (2000) — race has no genetic basis",
-      body: "At the White House ceremony marking completion of the first draft of the human genome, Craig Venter (Institute of Genetic Research) and Francis Collins (National Institutes of Health) jointly declared that the data showed no genetic basis for traditional racial categories.",
-      source: "American Scientist — 'Race Finished' (2019) · Human Genome Project completion ceremony (2000)"
-    },
-    {
-      heading: "Skin colour genes track UV exposure — not genetic kinship",
-      body: "Skin colour is controlled by very few genes (primarily SLC24A5, SLC45A2, MC1R, OCA2) that track one variable: UV radiation at the latitude where your ancestors lived. Europeans and East Asians both share light skin genes despite being genetically distant.",
-      source: "Norton et al. — Molecular Biology and Evolution 24(3) (2007) · Lamason et al. — Science 310 (2005) · Martin et al. — Cell 171 (2017)"
-    },
-    {
-      heading: "Bone density differences — real, but not what it sounds like",
-      body: "Studies do show people of sub-Saharan African ancestry tend to have higher bone mineral density than people of European ancestry (4.5–16.1% higher in men, 1.2–7.3% in women). But this reflects adaptation to different UV environments and vitamin D processing — not race as a meaningful category.",
-      source: "Journal of Clinical Endocrinology & Metabolism 82(2):429 (1997, Oxford Academic) · Osteoporosis International — Springer Nature (2020)"
-    }
-  ]
-};
-
-// Render section 12
-const s12 = section12;
-const card12 = document.createElement("div");
-card12.className = "section-card";
-card12.id = s12.id;
-card12.style.setProperty("--section-accent", s12.accent);
-card12.style.setProperty("--section-color", s12.color + "dd");
-card12.style.setProperty("--section-color2", s12.color + "88");
-
-const btn12 = document.createElement("button");
-btn12.className = "section-btn";
-btn12.setAttribute("aria-expanded", "false");
-btn12.innerHTML = `
-  <div class="section-btn-left">
-    <div class="section-dot"></div>
-    <span class="section-title">${s12.title}</span>
-  </div>
-  <div class="section-btn-right">
-    <span class="section-count">${s12.points.length} points</span>
-    <span class="section-chevron">▾</span>
-  </div>
-`;
-btn12.addEventListener("click", () => {
-  const isOpen = card12.classList.toggle("open");
-  btn12.setAttribute("aria-expanded", isOpen);
-});
-card12.appendChild(btn12);
-
-const list12 = document.createElement("div");
-list12.className = "points-list";
-s12.points.forEach((point, idx) => {
-  const item = document.createElement("div");
-  item.className = "point-item";
-  const pBtn = document.createElement("button");
-  pBtn.className = "point-btn";
-  pBtn.setAttribute("aria-expanded", "false");
-  pBtn.innerHTML = `
-    <div class="point-left">
-      <span class="point-num">${String(idx + 1).padStart(2, "0")}</span>
-      <span class="point-heading">${point.heading}</span>
-    </div>
-    <span class="point-toggle">+</span>
-  `;
-  pBtn.addEventListener("click", () => {
-    const isExpanded = item.classList.toggle("expanded");
-    pBtn.setAttribute("aria-expanded", isExpanded);
-    pBtn.querySelector(".point-toggle").textContent = isExpanded ? "−" : "+";
-  });
-  const body = document.createElement("div");
-  body.className = "point-body";
-  body.innerHTML = `<p class="point-text">${point.body}</p><div class="point-source">${point.source}</div>`;
-  item.appendChild(pBtn);
-  item.appendChild(body);
-  list12.appendChild(item);
-});
-card12.appendChild(list12);
-main.appendChild(card12);
-
-// Add nav pill for section 12
-const pill12 = document.createElement("a");
-pill12.href = "#genetics-race";
-pill12.className = "nav-pill";
-pill12.textContent = "Genetics of Race";
-navInner.appendChild(pill12);
 
 // Add nav pill for "Contact Us"
 const pillContact = document.createElement("a");
@@ -949,11 +908,11 @@ contactSection.innerHTML = `
   </div>
 `;
 
-// Build footer first so we can append after the contact section
+// Build footer
 const footer = document.createElement("footer");
 footer.className = "site-footer";
 footer.innerHTML = `
-  <p class="footer-label">Relevant Book/Studies for reading</p>
+  <p class="footer-label">Relevant Books / Studies for further reading</p>
   <p class="footer-books">
     Blum, Lawrence — <em>I'm Not a Racist, But...</em> (Cornell UP, 2002) &middot;
     Appiah, Kwame Anthony — <em>Racisms</em> in <em>Anatomy of Racism</em> (OUP, 1990) &middot;
@@ -967,7 +926,7 @@ footer.innerHTML = `
   </p>
 `;
 
-// Append contact section then footer (contact form sits above the references list)
+// Append contact section then footer
 main.appendChild(contactSection);
 main.appendChild(footer);
 
